@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test</title>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const successParagraph = document.createElement("p");
+            const message = 'DOM Content Loaded!';
+
+            successParagraph.innerHTML = message;
+            console.log(message);
+            document.body.append(successParagraph);
+        })
+    </script>
+</head>
+<body>
+
+<script src="/resources/a.js?delay=2000"></script>
+<h1 class="a">A</h1>
+<link rel="stylesheet" href="/resources/a.css?delay=3000">
+
+<script src="/resources/b.js?delay=4000"></script>
+<h1 class="b">B</h1>
+<link rel="stylesheet" href="/resources/b.css?delay=5000">
+
+
+<script src="/resources/c.js?delay=6000"></script>
+<h1 class="c">C</h1>
+<link rel="stylesheet" href="/resources/c.css?delay=7000">
+
+</body>
+</html>

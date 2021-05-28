@@ -1,7 +1,8 @@
 import {Handler, Response} from "express";
 import _ from "lodash";
-import {Credentials} from "../models";
 import {adminCredentials} from "../mocks";
+import {askCredentials, makeCredentials} from "../utils/credentials";
+import {Credentials} from "../models";
 
 
 export function auth(): Handler {
@@ -9,13 +10,7 @@ export function auth(): Handler {
     const authorizationHeader = req.header('Authorization');
 
     if (authorizationHeader) {
-      const base64Credentials = authorizationHeader.split(' ')[1];
-      const rawCredentials = Buffer.from(base64Credentials, 'base64').toString();
-      const [login, password] = rawCredentials.split(':');
-      const credentials: Credentials = {
-        login,
-        password
-      };
+      const credentials: Credentials = makeCredentials(authorizationHeader);
 
       if (_.isEqual(credentials, adminCredentials)) {
         next();
@@ -25,10 +20,4 @@ export function auth(): Handler {
 
     askCredentials(res);
   };
-}
-
-function askCredentials(res: Response): void {
-  res.setHeader("WWW-Authenticate", "Basic realm=\"User Visible Realm\"");
-  res.status(401);
-  res.end();
 }

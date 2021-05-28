@@ -1,12 +1,15 @@
 import express from "express";
-import {optionalHandlers} from "./handlers";
 import path from "path";
+import {auth} from "./handlers/auth";
+import {delay} from "./handlers/delay";
+import {log} from "./handlers/log";
 
 
 const app = express();
 const PORT = 4000;
 
-app.use(optionalHandlers());
+app.use(auth());
+app.use(delay(), log());
 
 app.use("/resources", express.static(path.resolve(__dirname, "../resources")));
 

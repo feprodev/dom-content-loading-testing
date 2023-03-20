@@ -1,9 +1,5 @@
 # Dom-content-loading-testing
 This repo can help you to learn how browser loads scripts and files, builds dom, emits DOMContentLoaded etc.
-## Downloading
-```shell
-git clone https://github.com/myalkleon/dom-content-loading-testing.git
-```
 ## Installing
 ```shell
 npm install
